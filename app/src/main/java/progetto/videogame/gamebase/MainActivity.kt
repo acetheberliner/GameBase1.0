@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val gameViewModel: GameViewModel by viewModels {
         GameViewModel.Factory(application)
     }
-    private val apiKey = "e96d473555668ee67739012c7f140604" // <------------- MODFICA API KEY
+    private val apiKey = "ia9dgescdn74anr1iltzhvp6kteel7" // <------------- MODFICA API KEY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
