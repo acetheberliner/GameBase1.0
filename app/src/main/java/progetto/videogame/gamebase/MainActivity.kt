@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleNetworkOperations() {
         if (isNetworkAvailable()) {
-            gameViewModel.fetchTrendingMovies(apiKey)
+            gameViewModel.fetchTrendingGames(apiKey)
         } else {
             showNoInternetConnectionMessage()
         }
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         val searchView = findViewById<SearchView>(R.id.search_view)
         if (!searchView.isIconified) {
             searchView.onActionViewCollapsed()
-            gameViewModel.fetchTrendingMovies(apiKey)
+            gameViewModel.fetchTrendingGames(apiKey)
         } else {
             super.onBackPressed()
         }

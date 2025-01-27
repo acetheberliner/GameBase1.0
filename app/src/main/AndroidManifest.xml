@@ -1,20 +1,48 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.videogame.gamebase">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon=" "
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon=" "
         android:supportsRtl="true"
-        android:theme="@style/Theme.GameBase">
-        <activity android:name=".ui.view.MainActivity"
+        android:theme="@style/Theme.GameBase"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.SignInActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.SummaryActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.EndActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.ShippingActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.UserListActivity"
+            android:exported="true">
         </activity>
     </application>
 

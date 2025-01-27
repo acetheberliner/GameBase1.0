@@ -9,44 +9,44 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-import progetto.videogame.gamebase.models.game.TMDbMovie
-import progetto.videogame.gamebase.repository.MovieRepository
+import progetto.videogame.gamebase.models.game.IGDbGame
+import progetto.videogame.gamebase.repository.GameRepository
 
-class MovieViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: MovieRepository = MovieRepository(application)
+class GameViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository: GameRepository = GameRepository(application)
 
-    // LiveData for trending movies
-    private val _movies = MutableLiveData<List<TMDbMovie>>()
-    val movies: LiveData<List<TMDbMovie>> = _movies
+    // LiveData for trending games
+    private val _games = MutableLiveData<List<IGDbGame>>()
+    val games: LiveData<List<IGDbGame>> = _games
 
     // LiveData for search results
-    private val _searchResults = MutableLiveData<List<TMDbMovie>>()
-    val searchResults: LiveData<List<TMDbMovie>> = _searchResults
+    private val _searchResults = MutableLiveData<List<IGDbGame>>()
+    val searchResults: LiveData<List<IGDbGame>> = _searchResults
 
-    // LiveData for movie details
-    private val _movieDetails = MutableLiveData<TMDbMovie>()
-    val movieDetails: LiveData<TMDbMovie> = _movieDetails
+    // LiveData for game details
+    private val _gameDetails = MutableLiveData<IGDbGame>()
+    val gameDetails: LiveData<IGDbGame> = _gameDetails
 
-    fun fetchTrendingMovies(apiKey: String) = viewModelScope.launch {
-        val movieList = repository.getTrendingMovies(apiKey)
-        _movies.postValue(movieList)
+    fun fetchTrendingGames(apiKey: String) = viewModelScope.launch {
+        val gameList = repository.getTrendingGames(apiKey)
+        _games.postValue(gameList)
     }
 
-    fun searchMovies(apiKey: String, query: String) = viewModelScope.launch {
-        val movieList = repository.searchMovies(apiKey, query)
-        _searchResults.postValue(movieList)
+    fun searchGames(apiKey: String, query: String) = viewModelScope.launch {
+        val gameList = repository.searchGames(apiKey, query)
+        _searchResults.postValue(gameList)
     }
 
-    fun fetchMovieDetails(apiKey: String, movieId: Int) = viewModelScope.launch {
-        val movie = repository.getMovieDetails(apiKey, movieId)
-        _movieDetails.postValue(movie)
+    fun fetchGameDetails(apiKey: String, gameId: Int) = viewModelScope.launch {
+        val game = repository.getGameDetails(apiKey, gameId)
+        _gameDetails.postValue(game)
     }
 
     class Factory(private val application: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(MovieViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(GameViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return MovieViewModel(application) as T
+                return GameViewModel(application) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }
